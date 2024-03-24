@@ -65,11 +65,15 @@ After you have installed the necessary tools and libraries, you can build the ap
 
     $ make
 
-    After you have built the application, you can run it using the following command:
+6. You need to do step 1 to 5 for each CMakelists (3 times in 3 different directories)
+    
+7. After you have built the application, you can run it using the following command:
+    
+    $ cd build
     
     $ ./executable arguments
 
-    Replace executable-name with the name of the server or client executable, and command-line-arguments with the appropriate command-line arguments. Run server before client.
+    Replace `executable-name` with the name of the server or client executable, and `command-line-arguments` with the appropriate command-line arguments. Run server before client.
     Ex:
 
     $ ./server /path &
