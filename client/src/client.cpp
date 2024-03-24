@@ -1,3 +1,8 @@
+/**
+ * @file client.cpp
+ * @author Shayan Eram
+ * @brief the program to send command to Unix socket server.
+ */
 #include <iostream>
 #include <sys/socket.h>
 #include <sys/un.h>
@@ -9,10 +14,14 @@
 
 using namespace std;
 
+/**
+ * @brief main
+ * @param argc number of inputs
+ * @param argv the socket path
+*/
 int main(int argc, char* argv[])
 {
-	
-	// checking for input
+	// Check for correct input
 	if (argc != 3) {
 		cerr << "Usage: " << argv[0] << " <socket_path> <command>\n";
 		return 1;
@@ -20,20 +29,20 @@ int main(int argc, char* argv[])
 	const char* socketPath = argv[1];
 	const char* command = argv[2];
 
-	// creating socket 
+	// Create the socket
 	int clientSocket = socket(AF_UNIX, SOCK_STREAM, 0);
 	if (clientSocket == -1) {
 		cerr << "Error creating socket\n";
 		return 1;
 	}
 	
-	// specifying address 
+	// Specify the address
 	struct sockaddr_un serverAddress;
 	memset(&serverAddress, 0, sizeof(serverAddress));
 	serverAddress.sun_family = AF_UNIX;
 	strncpy(serverAddress.sun_path, socketPath, sizeof(serverAddress.sun_path) - 1);
 
-	// sending connection request 
+	// Send connection request 
 	int connectResult = connect(clientSocket, (struct sockaddr*)&serverAddress, sizeof(serverAddress));
 	if (connectResult == -1) {
 		cerr << "Error connecting socket\n";
@@ -63,7 +72,7 @@ int main(int argc, char* argv[])
 	// Print the message
 	cout << "Response from the server: " << message << endl;
 	
-	// closing socket 
+	// Close socket
 	close(clientSocket);
 
 	return 0;
