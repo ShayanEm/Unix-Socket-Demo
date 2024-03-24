@@ -65,7 +65,10 @@ After you have installed the necessary tools and libraries, you can build the ap
 
     $ make
 
-6. You need to do step 1 to 5 for each CMakelists (3 times in 3 different directories)
+6. You need to do step 1 to 5 for each CMakelists (3 times in 3 different directories):
+    -Unix-Socket-Demo/
+    -server/
+    -client/
     
 7. After you have built the application, you can run it using the following command:
     
@@ -73,12 +76,15 @@ After you have installed the necessary tools and libraries, you can build the ap
     
     $ ./executable arguments
 
-    Replace `executable-name` with the name of the server or client executable, and `command-line-arguments` with the appropriate command-line arguments. Run server before client.
-    Ex:
+    Replace `executable-name` with the name of the server or client executable, and `command-line-arguments` with the appropriate command-line arguments. Run server before client. Replace `/path` with the path where you want to create the socket.
 
-    $ ./server /path &
+    For server:
 
-    $ ./client /path ARGUMENT
+    $ ./server /path/socket &
+
+    For client:
+
+    $ ./client /path/socket COMMAND
 
 ## Installation and Setup Docker
 Before you can build and run the Dockerfile, you need to install the necessary tools and libraries. Here’s how you can do it:
